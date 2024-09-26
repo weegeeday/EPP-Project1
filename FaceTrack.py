@@ -35,4 +35,4 @@ while True:
         right *= 4
         bottom *= 4
         left *= 4
-        print(f"Coordinates: {top}, {right}, {bottom}, {left}")
+        print(f"Coordinates: {left}, {top}, {right}, {bottom}")
