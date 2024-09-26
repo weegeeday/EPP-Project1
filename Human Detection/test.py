@@ -1,12 +1,13 @@
 import asyncio
-import websockets
 
-async def read_websocket(uri):
-    async with websockets.connect(uri) as websocket:
-        while True:
-            message = await websocket.recv()
-            print(f"Received message: {message}")
+from websockets.asyncio.client import connect
+
+async def hello():
+    uri = "ws://localhost:8765"
+    async with connect(uri) as websocket:
+
+        greeting = await websocket.recv()
+        print(greeting)
 
 if __name__ == "__main__":
-    uri = "ws://localhost:8765"  # Replace with your WebSocket server URI
-    asyncio.get_event_loop().run_until_complete(read_websocket(uri))
+    asyncio.run(hello())

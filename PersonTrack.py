@@ -1,9 +1,9 @@
 from ultralytics import YOLO
 import cv2
 
-model = YOLO("./Human Detection/yolov8n.pt")  # load an official detection model
-model.classes = [1]  # only detect human
 
+model = YOLO("./yolov8n.pt")  # load an official detection model
+model.classes = [1]  # only detect human
 
 while True:
     # Capture image from webcam
