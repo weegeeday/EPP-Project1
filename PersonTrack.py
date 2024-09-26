@@ -20,4 +20,7 @@ while True:
             print(f"Coordinates: {x1}, {y1}, {x2}, {y2}")
         except IndexError:
             print("No human detected")
-    Send2Ardui.Send2Ardui.Send(direction)
+    try:
+        Send2Ardui.Send2Ardui.Send(direction)
+    except NameError:
+        print("NameError")
