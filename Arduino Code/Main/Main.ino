@@ -5,8 +5,8 @@ Servo EyeL_H; //Eye, L for left, H is horizontal.
 Servo EyeR_H;
 //Servo EyeR_V;
 //servos go from 0 to 180.
-int ValH = 50; // curent servo val. 50 is middle
-int ValV = 50; 
+int ValH = 0; // curent servo val. 50 is middle (check for all of them)
+int ValV = 0; 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
@@ -14,7 +14,7 @@ void setup() {
   //EyeR_V.attach(A1);
   EyeL_H.attach(A2);
   //EyeL_V.attach(A3);
-  EyeR_H.write(0); //change this if it doesnt work. point of it is to make servos go to their max value so they can be not drifting.
+  EyeR_H.write(50); //change this if it doesnt work. point of it is to make servos go to their max value so they can be not drifting.
   delay(15);
   //EyeR_V.write(0); //its like kinda calibration but not really.
   //delay(15);
@@ -22,11 +22,11 @@ void setup() {
   //delay(15);
   //EyeL_V.write(0);
   delay(1000);
-  EyeR_H.write(50); //center servos
-  delay(15);
+  EyeR_H.write(0); //center servos
+  //delay(15);
   //EyeR_V.write(50);
   //delay(15);
-  EyeL_H.write(50);
+  //EyeL_H.write(50);
   //delay(15);
   //EyeL_V.write(50);
   delay(1000);
