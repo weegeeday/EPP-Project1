@@ -1,5 +1,6 @@
 from ultralytics import YOLO
 import cv2
+import Send2Ardui
 
 
 model = YOLO("./yolov8n.pt")  # load an official detection model
@@ -15,6 +16,8 @@ while True:
         boxesxy = det.boxes.xyxy  # Bounding box coordinates
         try:
             x1, y1, x2, y2 = boxesxy[0]
+            direction = [int(round(float(x1),1)), int(round(float(y1),1))]
             print(f"Coordinates: {x1}, {y1}, {x2}, {y2}")
         except IndexError:
             print("No human detected")
+    Send2Ardui.Send2Ardui.Send(direction)
