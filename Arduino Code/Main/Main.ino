@@ -1,34 +1,20 @@
 #include <Servo.h>
-//One arduino on horizontal, one on vertical.
-Servo EyeL_H; //Eye, L for left, H is horizontal.
-//Servo EyeL_V;
-Servo EyeR_H;
-//Servo EyeR_V;
-//servos go from 0 to 180.
+Servo EyeV; //Eye, Horizontal, Vertical. Just wire the the servos on each eye together! Vertical R and L on the same pin! (just make sure the 0's are the same)
+Servo EyeH;
 int ValH = 0; // curent servo val. 50 is middle (check for all of them)
-int ValV = 0; 
+//int ValV = 0;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
-  EyeR_H.attach(A0); //change these pins to pwm ones
-  //EyeR_V.attach(A1);
-  EyeL_H.attach(A2);
-  //EyeL_V.attach(A3);
-  EyeR_H.write(50); //change this if it doesnt work. point of it is to make servos go to their max value so they can be not drifting.
+  EyeH.attach(A0); //change these pins to pwm ones
+  //EyeV.attach(A1);
+  EyeH.write(50); //change this if it doesnt work. point of it is to make servos go to their max value so they can be not drifting.
   delay(15);
-  //EyeR_V.write(0); //its like kinda calibration but not really.
+  //EyeV.write(50);
   //delay(15);
-  EyeL_H.write(0);
+  EyeH.write(0);
   //delay(15);
-  //EyeL_V.write(0);
-  delay(1000);
-  EyeR_H.write(0); //center servos
-  //delay(15);
-  //EyeR_V.write(50);
-  //delay(15);
-  //EyeL_H.write(50);
-  //delay(15);
-  //EyeL_V.write(50);
+  //EyeV.write(0);
   delay(1000);
   Serial.println("ready");
 }
@@ -37,12 +23,8 @@ void loop() {
   // put your main code here, to run repeatedly:
   if (Serial.available() > 0) {
     int input = Serial.parseInt();
-    ValH = input;
-    //ValV = input;
-    EyeR_H.write(ValH);
-    EyeL_H.write(ValH);
-    //EyeR_V.write(ValV);
-    //EyeL_V.write(ValV);
+    EyeV.write(ValH);
+    //EyeH.write(ValH);
     Serial.println(1); // say we are done working
   }
 }

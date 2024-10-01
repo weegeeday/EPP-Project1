@@ -5,17 +5,12 @@ import time
 direction = [None,None]
 global prevdir 
 prevdir = [0,0]
-
-#initialize the serial port
-ser = serial.Serial('COM3', 115200)
-ser.flushInput()
-ser.flushOutput()
-#try:
-    #ser2 = serial.Serial('COM4', 115200)
-    #ser2.flushInput()
-    #ser2.flushOutput()
-#except serial.SerialException:
-   # print("Serial port error")
+try:
+    ser = serial.Serial('COM3', 115200) #one arduino for horizontal, one for vertical, cus like just write the motors to the same.
+    ser2 = serial.Serial('COM4', 115200)
+except serial.SerialException:
+    print("Serial port error")
+    exit()
 print("Serial port initialized")
 steps = 0
 class Send2Ardui:
@@ -47,12 +42,12 @@ class Send2Ardui:
                 if prevdir[1] > direction[1]:
                     #move up
                     print("Move up")
-                    #ser2.write(bytes(steps))
+                    ser2.write(bytes(steps))
                     time.sleep(1)
                 if prevdir[1] < direction[1]:
                     #move down
                     print("Move down")
-                    #ser2.write(bytes(steps))
+                    ser2.write(bytes(steps))
                     time.sleep(1)
         except UnboundLocalError:
             print("UnboundLocalError")
