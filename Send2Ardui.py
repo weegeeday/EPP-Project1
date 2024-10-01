@@ -23,32 +23,11 @@ class Send2Ardui:
                 print("No change in direction")
                 return
             if prevdir != direction:
-                if prevdir[0] > direction[0]:
-                    #move left
-                    print("Move left")
-                    unmapst = prevdir[0] - direction[0]
-                    #steps is from 0 to 180 degrees, convesion from unmapst to steps needs to be done, unmapst is the difference in x coordinates, coords have limits that equal the camera resolution 480x640.
-                    steps = int((unmapst/640)*180)
-                    print(steps)
-                    ser.write(bytes(steps))
-                    time.sleep(1)
-                if prevdir[0] < direction[0]:
-                    #move right
-                    print("Move right")
-                    unmapst = direction[0] - prevdir[0]
-                    steps = int((unmapst/640)*180)
-                    ser.write(bytes(steps))
-                    time.sleep(1)
-                if prevdir[1] > direction[1]:
-                    #move up
-                    print("Move up")
-                    ser2.write(bytes(steps))
-                    time.sleep(1)
-                if prevdir[1] < direction[1]:
-                    #move down
-                    print("Move down")
-                    ser2.write(bytes(steps))
-                    time.sleep(1)
+                print("Change in direction")
+                ser.write(bytes(direction[0]))
+                time.sleep(1)
+                ser2.write(bytes(direction[1]))
+                time.sleep(1)
         except UnboundLocalError:
             print("UnboundLocalError")
         except TypeError:

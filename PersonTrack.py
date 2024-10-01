@@ -1,6 +1,7 @@
 from ultralytics import YOLO
 import cv2
 import Send2Ardui
+import TommyS2A
 
 
 model = YOLO("./yolov8n.pt")  # load an official detection model
@@ -21,6 +22,7 @@ while True:
         except IndexError:
             print("No human detected")
     try:
-        Send2Ardui.Send2Ardui.Send(direction)
+        angles = TommyS2A.pixelToAngle(direction[0], direction[1])
+        Send2Ardui.Send2Ardui.Send(angles)
     except NameError:
         print("NameError")
