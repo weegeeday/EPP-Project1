@@ -7,7 +7,7 @@ global prevdir
 prevdir = [0,0]
 try:
     ser = serial.Serial('COM3', 115200) #one arduino for horizontal, one for vertical, cus like just write the motors to the same.
-    ser2 = serial.Serial('COM4', 115200)
+    ser2 = serial.Serial('COM7', 115200)
 except serial.SerialException:
     print("Serial port error")
     exit()
