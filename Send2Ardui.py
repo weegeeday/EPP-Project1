@@ -24,8 +24,10 @@ class Send2Ardui:
                 return
             if prevdir != direction:
                 print("Change in direction")
+                print(direction[0])
                 ser.write(bytes(direction[0]))
                 time.sleep(1)
+                print(direction[1])
                 ser2.write(bytes(direction[1]))
                 time.sleep(1)
         except UnboundLocalError:
