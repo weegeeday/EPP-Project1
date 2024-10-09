@@ -8,7 +8,7 @@ def pixelToAngle(pixel_x, pixel_y):
         if pixel_x > 0 and pixel_x <= res_x and pixel_y > 0 and pixel_y <= res_y:
                 calc_x = math.degrees(math.atan( ( (pixel_x-half_x) * math.tan(math.radians(fov_x/2)) ) / half_x)) + fov_x/2
                 calc_y = math.degrees(math.atan( ( (pixel_y-half_y) * math.tan(math.radians(fov_y/2)) ) / half_y)) + fov_y/2
-                return round(calc_x), round(calc_y)
+                return fov_x - round(calc_x), round(calc_y)
         else:
             print("ERROR: Values are not within the bounds of the screen's resolution!")
             return
