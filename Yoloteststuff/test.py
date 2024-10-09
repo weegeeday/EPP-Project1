@@ -1,13 +1,35 @@
-import asyncio
+import serial
+import time
 
-from websockets.asyncio.client import connect
+def main():
+    # Configure the serial connection
+    ser = serial.Serial('COM7', 115200, timeout=1)
+    time.sleep(2)  # Wait for the serial connection to initialize
 
-async def hello():
-    uri = "ws://localhost:8765"
-    async with connect(uri) as websocket:
+    while True:
+        # Send '0' to the serial device
+        ser.write(b'0')
+        print("Sent: 0")
 
-        greeting = await websocket.recv()
-        print(greeting)
+        # Wait to receive '1' from the serial device
+        while True:
+            if ser.in_waiting > 0:
+                response = ser.read()
+                if response == b'1':
+                    print("Received: 1")
+                    break
+
+        # Send '90' to the serial device
+        ser.write(b'75')
+        print("Sent: 75")
+
+        # Wait to receive '1' from the serial device again
+        while True:
+            if ser.in_waiting > 0:
+                response = ser.read()
+                if response == b'1':
+                    print("Received: 1")
+                    break
 
 if __name__ == "__main__":
-    asyncio.run(hello())
+    main()
