@@ -1,9 +1,6 @@
 from ultralytics import YOLO
 import cv2
-try:
-    import Send2Ardui
-except ImportError:
-    print("bruh")
+import Send2Ardui
 import TommyS2A
 
 
@@ -25,7 +22,7 @@ while True:
         except IndexError:
             print("No human detected")
     try:
-        angles = TommyS2A.pixelToAngle(direction[0], direction[1])
+        angles = TommyS2A.pixelToAngle(direction[0], direction[1]) 
         Send2Ardui.Send2Ardui.Send(angles)
         print(angles)
     except NameError:

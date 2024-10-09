@@ -6,11 +6,6 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
   Eye.attach(A0); //change these pins to pwm ones
-  Eye.write(10); //change this if it doesnt work. point of it is to make servos go to their max value so they can be not drifting.
-  delay(100);
-  Eye.write(0);
-  delay(1000);
-  Serial.println("ready");
 }
 
 void loop() {
@@ -18,6 +13,7 @@ void loop() {
   if (Serial.available() > 0) {
     int Val = Serial.parseInt();
     Eye.write(Val);
+    delay(100);
     Serial.println(1); // say we are done working
   }
 }
