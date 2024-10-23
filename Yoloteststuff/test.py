@@ -1,3 +1,6 @@
+#this code can be ignored. its used for testing every now and then.
+
+
 import serial
 import time
 
